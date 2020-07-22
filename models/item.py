@@ -1,11 +1,9 @@
-# import the data base
 from db import db
 
-# this the item from the moduel
-class ItemModel(db.Model):
-    __tablename__ = 'items' #name of the database file (db)
 
-    # this this name the data base with id
+class ItemModel(db.Model):
+    __tablename__ = 'items'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     price = db.Column(db.Float(precision=2))
@@ -18,7 +16,6 @@ class ItemModel(db.Model):
         self.price = price
         self.store_id = store_id
 
-    
     def json(self):
         return {'name': self.name, 'price': self.price}
 
@@ -29,7 +26,6 @@ class ItemModel(db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-
 
     def delete_from_db(self):
         db.session.delete(self)
